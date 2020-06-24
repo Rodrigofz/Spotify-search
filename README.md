@@ -8,7 +8,7 @@
 
 La idea del proyecto es hacer un buscador que permita visualizar el tiempo y los países que una canción se mantuvo en el top 200 de Spotify.
 
-Para esto, se usará los [siguientes datos](./data.csv). Estos están pre procesados para limpiarlos. Los datos sin procesar están [aquí](./raw_data.zip)
+Para esto, se usará los [siguientes datos](./data.zip). Estos están pre procesados para limpiarlos. Los datos sin procesar están [aquí](./raw_data.zip)
 
 Se pretenden seguir lo siguientes pasos:
 
