@@ -24,7 +24,4 @@ ranking = FOREACH pre_stream_ranking GENERATE $0 as key, ($1/$2) as ranking;
 -- Order
 ordered_ranking = ORDER ranking BY ranking DESC;
 
-data_grp = GROUP ordered_ranking ALL;
-result = FOREACH data_grp GENERATE SUM(ordered_ranking.ranking) as total;
-
 STORE ordered_ranking INTO 'hdfs://cm:9000/uhadoop2020/3grupo/test_v2/streams';
