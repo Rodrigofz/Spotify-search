@@ -9,7 +9,7 @@ joined = JOIN position_ranking by key, stream_ranking by key, distance_ranking b
 -- ranking = FOREACH joined GENERATE position_ranking::key as key, 0.3*position_ranking::position_ranking+0.7*stream_ranking::stream_ranking as ranking;
 
 -- v3
-ranking = FOREACH joined GENERATE position_ranking::key as key, 0.2*position_ranking::position_ranking+0.2*stream_ranking::stream_ranking+0.6*distance_ranking::distance_ranking as ranking;
+ranking = FOREACH joined GENERATE position_ranking::key as key, 0.1*position_ranking::position_ranking+0.1*stream_ranking::stream_ranking+0.8*distance_ranking::distance_ranking as ranking;
 
 ordered_ranking = ORDER ranking BY ranking DESC;
 

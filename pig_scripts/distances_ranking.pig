@@ -16,7 +16,11 @@ songs_scored = FOREACH score GENERATE full_songs::key as key, distances_scores::
 -- Group
 grouped = GROUP songs_scored BY key;
 
-pre_ranking = FOREACH grouped GENERATE group as key, AVG(songs_scored.score) as score;
+-- v3
+-- pre_ranking = FOREACH grouped GENERATE group as key, AVG(songs_scored.score) as score;
+
+-- v4
+pre_ranking = FOREACH grouped GENERATE group as key, MAX(songs_scored.score) as score;
 
 -- Total ranking
 data_grp = GROUP pre_ranking ALL;
