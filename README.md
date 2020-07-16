@@ -4,7 +4,7 @@ Ranking diseñado para canciones de spotify basado en posiciones del top 200, ca
 
 ## Idea general
 
-La idea del proyecto es descubrir cómo varían las canciones más populares a través del mundo, tomando en cuenta las posiciones en el TOP 200 de los rankings de Spotify, la cantidad de reproducciones totales de cada canción en todos los paises donde es escuchada y las distancia de los paises donde estas son reproducidas a uno de referencia.
+La idea del proyecto es descubrir cómo varían las canciones más populares a través del mundo, tomando en cuenta las posiciones en el [TOP 200 de los rankings de Spotify](https://www.kaggle.com/edumucelli/spotifys-worldwide-daily-song-ranking), la cantidad de reproducciones totales de cada canción en todos los paises donde es escuchada y las distancia de los paises donde estas son reproducidas a uno de referencia.
 
 Analizando esta información esperamos averiguar si existen correlaciones entre el lugar geográfico y la música que más se escucha o si la globalización ha avanzado tanto que lo más popular se ha independizado de la cultura de cada país.
 
