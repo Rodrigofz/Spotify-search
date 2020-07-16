@@ -58,6 +58,23 @@ Las mejores 10 canciones según el ranking, considerando solo las posiciones en 
 | Ersay Üner | İki Aşık | 7.052054285142376E-5
 | Nitro | Infamity Show | 7.043600427564284E-5
 
+### Top 10 distancia desde Chile
+
+10 de las mejores canciones según el ranking, considerando solo la distancia hacia Chile (Por eso todas tienen el mismo puntaje).
+
+| Artista | Canción | Puntaje
+|---|---|---|
+| "Franco ""El Gorilla""" | Bailen (Remix) | 6.108237711118094E-4
+| Michael Bublé | Christmas (Baby Please Come Home) | 6.108237711118094E-4
+| Sam Smith | Stay With Me | 6.108237711118094E-4
+| Sonora Malecón | Melosa | 6.108237711118094E-4
+| Maroon 5 | Don't Wanna Know (feat. Kendrick Lamar) | 6.108237711118094E-4
+| Demi Lovato | Sorry Not Sorry | 6.108237711118094E-4
+| Sia | Cheap Thrills | 6.108237711118094E-4
+| Luis Miguel | Llego La Navidad (Winter Wonderland) | 6.108237711118094E-4
+| Alessia Cara | "How Far I'll Go - From ""Moana""" | 6.108237711118094E-4
+| Soundgarden | Rusty Cage | 6.108237711118094E-4
+
 ### Top 10 Chile
 
 Las mejores 10 canciones según el ranking, considerando las reproducciones, posiciones y además la distancia a Chile.
