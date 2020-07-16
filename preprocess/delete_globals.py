@@ -1,5 +1,7 @@
-file = open("data.csv", 'r')
-clean_file = open("cleaned_data.csv", 'w+')
+import sys
+
+file = open(sys.argv[1], 'r')
+clean_file = open(sys.argv[2], 'w+')
 
 import random
 for line in file:

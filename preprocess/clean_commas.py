@@ -1,7 +1,8 @@
 import re
+import sys
 
-data = open("data.csv")
-clean = open("clean_data.csv", 'w+')
+data = open(sys.argv[1])
+clean = open(sys.argv[2], 'w+')
 
 counter=0
 for line in data:

@@ -1,8 +1,9 @@
 import folium
 from folium.plugins import MarkerCluster
+import sys
 
 # Read file
-data = open("data.csv")
+data = open(sys.argv[1])
 countries = {}
 
 data.readline()
@@ -30,5 +31,5 @@ for ll in latlongs:
     radius=5
     folium.CircleMarker(location = [lat, long], radius=radius, fill=True).add_to(world_map)
 
-world_map.save("map.html")
+world_map.save(sys.argv[2])
     
