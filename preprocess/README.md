@@ -8,6 +8,8 @@ Construye un mapa donde marca los países que se encuentran en el dataset.
 
 El output se encuentra en [map.html](./map.html)
 
+![](map.png)
+
 ## Clean commas
 
 Limpia las comas que no permiten procesar bien los datos. Algunas canciones poseían comas en los nombres o artistas, lo que no permitía trabajar los datos correctamente al ser un csv.
