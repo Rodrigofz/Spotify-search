@@ -180,7 +180,7 @@ Las mejores 10 canciones según el ranking, considerando las reproducciones, pos
 
 ### Búsquedas
 
-Búsqueda desde Chile, sin utilizar el ranking, para la palabra "mon":
+Búsqueda desde Chile 🇨🇱, sin utilizar el ranking, para la palabra "mon":
 
 | Artista | Canción |
 |---|---|
@@ -195,7 +195,7 @@ Búsqueda desde Chile, sin utilizar el ranking, para la palabra "mon":
 | Mon Laferte | El Diablo
 | Mon Laferte | Vuelve por Favor
 
-Búsqueda desde Chile, utilizando el ranking, para la palabra "mon":
+Búsqueda desde Chile 🇨🇱, utilizando el ranking, para la palabra "mon":
 
 | Artista | Canción |
 |---|---|
@@ -210,7 +210,7 @@ Búsqueda desde Chile, utilizando el ranking, para la palabra "mon":
 | Mon Laferte | Bonita - Bonus Track
 | Mon Laferte | Orgasmo para Dos
 
-Búsqueda desde Estados Unidos, utilizando el ranking, para la palabra "mon":
+Búsqueda desde Estados Unidos 🇺🇸, utilizando el ranking, para la palabra "mon":
 
 | Artista | Canción |
 |---|---|
@@ -225,7 +225,7 @@ Búsqueda desde Estados Unidos, utilizando el ranking, para la palabra "mon":
 | Sofiane | Mon p'tit loup
 | Roch Voisine | Mon beau sapin
 
-Búsqueda desde Alemania, utilizando el ranking, para la palabra "mon":
+Búsqueda desde Alemania 🇩🇪, utilizando el ranking, para la palabra "mon":
 
 | Artista | Canción |
 |---|---|
@@ -240,7 +240,7 @@ Búsqueda desde Alemania, utilizando el ranking, para la palabra "mon":
 | Bigflo & Oli | Dans mon lit
 | Jul | Mon bijou
 
-Búsqueda desde Alemania, utilizando el ranking, para la palabra "mon":
+Búsqueda desde Honk Kong 🇭🇰, utilizando el ranking, para la palabra "mon":
 
 | Artista | Canción |
 |---|---|
