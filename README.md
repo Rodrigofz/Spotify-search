@@ -20,7 +20,7 @@ Se pretenden seguir lo siguientes pasos:
 
 ## Data
 
-El Dataset a utilizar es [Spotify’s WorldWide Daily Song Ranking](https://www.kaggle.com/edumucelli/spotifys-worldwide-daily-song-ranking), el cual contiene el ranking diario de las 200 canciones más escuchadas por usuarios en Spotify  en 53 países desde el primero de enero del 2017 hasta el 9 de enero del 2018. Contiene más de 2 millones de filas, que contienen 6629 artistas, 18598 canciones y una cuenta total de 105 billones de reproducciones. 
+El Dataset a utilizar es [Spotify’s WorldWide Daily Song Ranking](https://www.kaggle.com/edumucelli/spotifys-worldwide-daily-song-ranking), el cual contiene el ranking diario de las 200 canciones más escuchadas por usuarios en Spotify  en 53 países desde el primero de enero del 2017 hasta el 9 de enero del 2018. Contiene más de 2 millones de filas, que contienen 6629 artistas, 18598 canciones y una cuenta total de 105 billones de reproducciones.
 
 El formato del Dataset es CSV y cada linea se organiza en 7 campos separados por comas (“,”) que contienen los datos en el siguiente orden:
 
