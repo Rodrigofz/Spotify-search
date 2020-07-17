@@ -20,7 +20,42 @@ Se pretenden seguir lo siguientes pasos:
 
 ## Data
 
+El Dataset a utilizar es [Spotify’s WorldWide Daily Song Ranking](https://www.kaggle.com/edumucelli/spotifys-worldwide-daily-song-ranking), el cual contiene el ranking diario de las 200 canciones más escuchadas por usuarios en Spotify  en 53 países desde el primero de enero del 2017 hasta el 9 de enero del 2018. Contiene más de 2 millones de filas, que contienen 6629 artistas, 18598 canciones y una cuenta total de 105 billones de reproducciones. 
+
+El formato del Dataset es CSV y cada linea se organiza en 7 campos separados por comas (“,”) que contienen los datos en el siguiente orden:
+
+- Posición
+- Nombre de la canción
+- Artista
+- Reproducciones
+- URL
+- Fecha
+- País
+
+Se eligió este Dataset debido a que la música es un gusto afín entre los integrantes del equipo, por lo que les pareció interesante poder utilizar esta información para poder sacar conclusiones sobre las canciones que se escuchan en el mundo, comparando diferentes países y como los resultados de cada uno se pueden relacionar con la cultura de la región.
+
 ## Métodos
+
+Lo primero que se hizo fue construir una pequeña visualización de los países de los cuales se tiene información, esto para poder tener una idea de los países con los que se estaba trabajando. Con esto se descubrió que se encuentran la mayoría de los países de América y Europa, y de parte de los de Asia y Oceanía, de otros continentes no se tiene información. Esto ayudó a después decidir con qué países de referencia se trabajaría. El mapa obtenido se muestra a continuación.
+
+![map](preprocess/map.png)
+
+El siguiente paso es preprocesar los datos. El formato csv del dataset produce problemas al momento de trabajarlo, pues mucha canciones contienen comas en sus nombres, por ejemplo, "Sola (Remix) [feat. Daddy Yankee, Wisin, Farruko, Zion & Lennox]". Esto causa que al hacer “split”, no todas las filas tengan la misma cantidad de columnas. Para solucionarlo, se crea un [script de python](./preprocess/clean_commas.py), con el cual se remueven todas las comas que estén dentro de un par de paréntesis o entre comillas, pues ese era el formato en que aparecen la mayoría de los featurings entre artistas. Además de las comas, otro problema encontrado fue que dentro del dataset original, diariamente aparece el ranking diario global, el cual se obtiene sumando las reproducciones totales por país de cada canción. Para efectos del objetivo de este proyecto, esta información altera los resultados, pues para las canciones que salen en este ranking, estaríamos sumando 2 veces todas sus reproducciones, por lo que se opta por removerlos, mediante otro [script](./preprocess/delete_globals.py) en Python.
+
+Luego utilizando Pig se crea un [ranking](./pig_scripts/total_ranking.pig) para todas las canciones del dataset, teniendo en cuenta tanto las reproducciones, las posiciones obtenidas dentro de todos los países y la distancia desde el país de referencia hasta el país más cercano a éste dónde se escuche dicha canción. Para lograrlo se crearon 3 rankings diferentes:
+
+- [Ranking de posiciones](./pig_scripts/positions.pig): Para cada par único canción y artista se obtiene un promedio de todas las posiciones obtenidas por éste en todos los países, sin contar aquellas fechas y regiones donde no estuvo en el top 200. Luego los resultados se normalizan, tal que, la suma de todos los ranking sea 1.
+
+- [Ranking de reproducciones](./pig_scripts/streams.pig): Para cada par único canción y artista se obtiene un promedio de todas las reproducciones obtenidas por éste en todos los países, para luego normalizar estos resultados obteniendo que la suma del ranking para cada canción es igual a 1.
+- [Ranking de distancia](./pig_scripts/distances_ranking.pig): En primer lugar se calculan las distancias entre cada pareja de países en el Dataset, utilizando un [script de Python](./distance/distances_scores.py), el cual genera un [archivo tsv](./distance/distances.tsv) el cual contiene por cada línea un par de países y su distancia respectiva. A continuación se elige un país de referencia, para obtener las distancias entre los 52 países y éste utilizando [un script de Pig](./pig_scripts/distances.pig). Finalmente se asignan los puntajes para cada canción utilizando un [script de Pig](./pig_scripts/distances_ranking.pig) El cual calcula el valor valor del ranking al aplicarle la función exponencial al inverso aditivo de la distancia dividido por 2000 (esto último para evitar que la curva decrezca muy rápido) y normalizando de tal forma que la suma del ranking obtenido para cada canción sea igual a 1. Se utilizó una función exponencial ya que se buscaba castigar fuertemente a los países que estuvieran lejos del país de referencia, a continuación se muestra la diferencia entre la curva exponencial utilizada y la alternativa que hubiera sido lineal.
+
+    ![curva](./presentacion/curva.png)
+
+El ranking de cada canción se obtiene al ponderar cada uno de los rankings ya mencionados según la importancia que el grupo asigna a cada dato respecto del objetivo del proyecto. En un principio se piensa en darle la misma relevancia a cada ranking, pero esto no arrojaba datos consistentes. Se llega a la hipótesis de que la cantidad de reproducciones de canciones muy famosas crea un desbalance en el ranking, pues sus números son tan grandes que acaparan los primeros lugares. Por esto se concluye  que es necesario darle una ponderación mucho mayor al ranking de distancias, ya que esto implica darle énfasis a que es lo que se escucha localmente en cada país, en lugar de a lo más escuchado a nivel mundial.
+
+Teniendo el ranking listo, lo que falta hacer es incorporar este a un sistema de búsqueda, esto se hizo utilizando Elastic Search, basándose en el laboratorio 7 del curso. Primero se construyó un índice de los datos, que considera el artista, el nombre de la canción y el puntaje obtenido según el ranking implementado. Luego, al momento de realizar una búsqueda, se utiliza el ranking incorporado como un boost para ordenar los resultados según su relevancia, los scripts utilizados para esta parte se encuentran en [/java](./java).
+
+Se opta por desarrollar los rankings en pig, puesto que dentro los tópicos vistos en el curso, es lo que más se asemeja a experiencias de cada integrante. Además al tener una sintaxis simple facilita el trabajo a la hora de programar. Para implementar las búsquedas se usa elasticsearch, ya que permite aplicar los rankings ya creados mediante un índice de importancia, lo que va de la mano con el objetivo de descubrir si actualmente existe una relación entre la música y los lugares donde es escuchada. 
 
 ## Resultados
 
@@ -144,3 +179,15 @@ Las mejores 10 canciones según el ranking, considerando las reproducciones, pos
 | Kendrick Lamar | LOVE. FEAT. ZACARI. | 2.5025404920979194E-4
 
 ## Conclusiones
+
+Viendo los resultados, se concluye que algunas partes del ranking funcionaron como se esperaba, pero otras no.
+
+Por ejemplo, el ranking de posiciones no fue bien logrado, y por eso no se ve ninguna canción conocida popularmente, como se esperaría. Las canciones que se ven en este top 10 son canciones que alcanzaron posiciones muy altas durante unos pocos días, causando que su promedio se inflase notoriamente.
+
+Por otro lado, se cree que el ranking de distancia fue logrado, ya que en en Chile efectivamente se pueden ver canciones conocidas por el público general. La única excepción sería la primera (Vai malandra), pero esta es una canción muy popular en Brasil, y como este se encuentra relativamente cerca de Chile y es el séptimo país con más población en el mundo, logra que las canciones que aquí se escuchan lleguen muy alto en el ranking implementado.
+
+Dentro de las mayores dificultades encontradas al realizar el proyecto se encuentran el pre-procesamiento de los datos y la implementación del sistema de búsqueda utilizando Elastic Search considerando el ranking propuesto. El primero fue principalmente debido a que el archivo era un .csv y dentro del nombre de algunas canciones se encontraban comas. Por su lado implementar la búsqueda con Elastic Search fue difícil, pues no se tenía conocimiento de cómo incorporar el ranking implementado a la búsqueda.
+
+Implementar los scripts de pig resultó bastante fácil. La experiencia del laboratorio 3 del ramo, fue una de las principales motivaciones para utilizar esta herramienta, pues éste le resultó al grupo fácil de realizar, debido a que es similar a herramientas que habían sido utilizadas previamente, como SQL.
+
+Si se rehiciera el proyecto, se cambiaría la implementación del ranking de posiciones, el cual no toma en consideración factores importantes como el tiempo que una canción se mantiene dentro del TOP 200, lo que ocasiona que ciertas canciones que tienen breves lapsos de popularidad alcancen posiciones altas en este. Siguiendo esta idea, en lugar de sólo sumar sus apariciones y dividirlas por la cantidad de estas, se debería dividir por el total de días que abarca el ranking o al menos por el máximo que haya alcanzado una canción, de tal manera que esto refleje su consistencia en el tiempo.
