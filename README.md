@@ -178,6 +178,83 @@ Las mejores 10 canciones según el ranking, considerando las reproducciones, pos
 | Drake | Sacrifices | 2.5097445897865884E-4
 | Kendrick Lamar | LOVE. FEAT. ZACARI. | 2.5025404920979194E-4
 
+### Búsquedas
+
+Búsqueda desde Chile, sin utilizar el ranking, para la palabra "mon":
+
+| Artista | Canción |
+|---|---|
+| Hornet La Frappe | Mon ex
+| Fouli | Mon Poto
+| Soprano | Mon pr?cieux
+| Capo | Mon Ch?ri
+| Jul | Mon bijou
+| Still Fresh | Mon ami
+| Bigflo & Oli | Dans mon lit
+| Johnny Hallyday | Mon plus beau No?l
+| Mon Laferte | El Diablo
+| Mon Laferte | Vuelve por Favor
+
+Búsqueda desde Chile, utilizando el ranking, para la palabra "mon":
+
+| Artista | Canción |
+|---|---|
+| Mon Laferte | El Diablo
+| Mon Laferte | Vuelve por Favor
+| Mon Laferte | El Cristal
+| Mon Laferte | Amárrame
+| Mon Laferte | Salvador
+| Mon Laferte | Un Alma En Pena
+| Mon Laferte | La Visita
+| Mon Laferte | Malagradecido
+| Mon Laferte | Bonita - Bonus Track
+| Mon Laferte | Orgasmo para Dos
+
+Búsqueda desde Estados Unidos, utilizando el ranking, para la palabra "mon":
+
+| Artista | Canción |
+|---|---|
+| Mon Laferte | Tu Falta De Querer
+| Mon Laferte | Amor Completo
+| Mon Laferte | Yo Te Qui
+| Mon Laferte | Mi Buen Amor
+| Mon Laferte | Amárrame
+| Mon Laferte | Si Tú Me Quisieras
+| Mon Laferte | Primaveral
+| Capo | Mon Ch?ri
+| Sofiane | Mon p'tit loup
+| Roch Voisine | Mon beau sapin
+
+Búsqueda desde Alemania, utilizando el ranking, para la palabra "mon":
+
+| Artista | Canción |
+|---|---|
+| Capo | Mon Ch?ri
+| Sofiane | Mon p'tit loup
+| Soprano | Mon pr?cieux
+| Hornet La Frappe | Mon ex
+| Fouli | Mon Poto
+| DTF | Dans mon nuage
+| Still Fresh | Mon ami
+| Roch Voisine | Mon beau sapin
+| Bigflo & Oli | Dans mon lit
+| Jul | Mon bijou
+
+Búsqueda desde Alemania, utilizando el ranking, para la palabra "mon":
+
+| Artista | Canción |
+|---|---|
+| Capo | Mon Ch?ri
+| Sofiane | Mon p'tit loup
+| Roch Voisine | Mon beau sapin
+| Hornet La Frappe | Mon ex
+| Moha La Squale | M'appelle pas mon fr?rot
+| Soprano | Mon pr?cieux
+| Mon Laferte | Am?rrame
+| Mon Laferte | Mi Buen Amor
+| Mon Laferte | Tu Falta De Querer
+| Johnny Hallyday | Mon plus beau No?l
+
 ## Conclusiones
 
 Viendo los resultados, se concluye que algunas partes del ranking funcionaron como se esperaba, pero otras no.
@@ -185,6 +262,8 @@ Viendo los resultados, se concluye que algunas partes del ranking funcionaron co
 Por ejemplo, el ranking de posiciones no fue bien logrado, y por eso no se ve ninguna canción conocida popularmente, como se esperaría. Las canciones que se ven en este top 10 son canciones que alcanzaron posiciones muy altas durante unos pocos días, causando que su promedio se inflase notoriamente.
 
 Por otro lado, se cree que el ranking de distancia fue logrado, ya que en en Chile efectivamente se pueden ver canciones conocidas por el público general. La única excepción sería la primera (Vai malandra), pero esta es una canción muy popular en Brasil, y como este se encuentra relativamente cerca de Chile y es el séptimo país con más población en el mundo, logra que las canciones que aquí se escuchan lleguen muy alto en el ranking implementado.
+
+En general, a pesar de tener espacio para mejoras, el ranking implementado se considera logrado. Esto se puede observar en los resultados de las búsquedas realizadas. Si se busca "mon" sin utilizar el ranking, se obtienen resultados poco populares para Chile, mientras que al utilizarlo, en las primeras 10 posiciones se obtienen canciones de Mon Laferte, cantante chilena muy popular. Luego, su aparición en las búsquedas desde otros países disminuye, a pesar de ser bastante alta en Estados Unidos, esto ocurre probablemente por su popularidad en México.
 
 Dentro de las mayores dificultades encontradas al realizar el proyecto se encuentran el pre-procesamiento de los datos y la implementación del sistema de búsqueda utilizando Elastic Search considerando el ranking propuesto. El primero fue principalmente debido a que el archivo era un .csv y dentro del nombre de algunas canciones se encontraban comas. Por su lado implementar la búsqueda con Elastic Search fue difícil, pues no se tenía conocimiento de cómo incorporar el ranking implementado a la búsqueda.
 
